@@ -4,8 +4,9 @@ set -eou pipefail
 
 release="$1"
 
-sed -i '' "s/ENV release=.*/ENV release=$release/" Dockerfile
+sed -i "s/ENV release=.*/ENV release=\"$release\"/" Dockerfile
 git add Dockerfile
+git checkout -b "$release"
 git commit -m "Updated for release $release"
 git tag -a -m "Release $release" "$release"
 
