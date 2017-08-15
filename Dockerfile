@@ -10,7 +10,8 @@ RUN apk add --update curl jq && \
 
 ENV release=
 
-RUN mkdir /syncthing \
+RUN set -x \
+    && mkdir /syncthing \
     && cd /syncthing \
     && release=${release:-$(curl -s https://api.github.com/repos/syncthing/syncthing/releases/latest | jq -r .tag_name )} \
     && curl -s -L https://github.com/syncthing/syncthing/releases/download/${release}/syncthing-linux-amd64-${release}.tar.gz \
