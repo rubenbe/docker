@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eou pipefail
+
 release="$1"
 
 sed -i '' "s/ENV release=.*/ENV release=$release/" Dockerfile
